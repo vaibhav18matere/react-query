@@ -7,7 +7,10 @@ const getEmojis = () => {
 };
 
 function RQSuperheroesPage() {
-  const { isLoading, data, error , isError} = useQuery({ queryKey : ['super-heroes'], queryFn : getEmojis });
+  const { isLoading, data, error , isError, isFetching} = useQuery({ queryKey : ['super-heroes'], queryFn : getEmojis, cacheTime:6000 });
+
+console.log({isLoading, isFetching });
+
 
   if (isLoading) return <h2>Loading...</h2>;
 

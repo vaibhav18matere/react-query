@@ -11,12 +11,12 @@ function SuperHeroesPage() {
       .get("https://api.github.com/repos/tannerlinsley/react-query")
       .then((res) => {
         setData(res.data);
-        console.log(res.data.full_name);
+        // console.log(res.data.full_name);
         setIsLoading(false);
       })
       .catch((error) => {
         setError(error.message);
-        console.log(error.message);
+        // console.log(error.message);
         setIsLoading(false);
       });
   }, []);
