@@ -7,10 +7,15 @@ const getEmojis = () => {
 };
 
 function RQSuperheroesPage() {
-  const { isLoading, data, error , isError, isFetching} = useQuery({ queryKey : ['super-heroes'], queryFn : getEmojis, cacheTime:6000 });
+  const { isLoading, data, error, isError, isFetching } = useQuery({
+    queryKey: ["super-heroes"],
+    queryFn: getEmojis,
+    //cache fallback back to 5 min.
+    staleTime: 30000, // to reduce no of network requests during stale time
+    // default stale time is 0 seconds
+  });
 
-console.log({isLoading, isFetching });
-
+  console.log({ isLoading, isFetching });
 
   if (isLoading) return <h2>Loading...</h2>;
 
