@@ -14,7 +14,7 @@ function RQSuperheroesPage() {
     // staleTime: 30000,
     // to reduce no of network requests during stale time
     // default stale time is 0 seconds
-    refetchOnMount:false,
+    refetchOnMount: true,
   });
 
   console.log({ isLoading, isFetching });
