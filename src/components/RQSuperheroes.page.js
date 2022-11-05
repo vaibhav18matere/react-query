@@ -11,8 +11,10 @@ function RQSuperheroesPage() {
     queryKey: ["super-heroes"],
     queryFn: getEmojis,
     //cache fallback back to 5 min.
-    staleTime: 30000, // to reduce no of network requests during stale time
+    // staleTime: 30000,
+    // to reduce no of network requests during stale time
     // default stale time is 0 seconds
+    refetchOnMount:false,
   });
 
   console.log({ isLoading, isFetching });
