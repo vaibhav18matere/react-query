@@ -6,6 +6,14 @@ const getEmojis = () => {
   return axios.get("https://api.github.com/repos/tannerlinsley/react-query");
 };
 
+const onSuccess = (data) => {
+  console.log("success query", data);
+};
+
+const onError = (error) => {
+  console.log("error query", error);
+};
+
 function RQSuperheroesPage() {
   const { isLoading, data, error, isError, isFetching, refetch } = useQuery({
     queryKey: ["super-heroes"],
@@ -20,7 +28,9 @@ function RQSuperheroesPage() {
     // refetchInterval: 2000,
     //automatic refetch after 2 sec, it looses focus when you chane tab, so we use,
     // refetchIntervalInBackground:true,
-    enabled: false, // disable fetching on loading
+    // enabled: false, // disable fetching on loading
+    onSuccess,
+    onError,
   });
 
   console.log({ isLoading, isFetching });
@@ -32,10 +42,10 @@ function RQSuperheroesPage() {
   return (
     <>
       <button onClick={refetch}>Fetch the data on click</button>
-      <h2>React Query</h2>
-      <p> subscriber : 👀 {data.subscribers_count}</p>
-      <p> stars : ✨ {data.stargazers_count}</p>
-      <p> forks : 🍴 {data.forks_count}</p>
+      <h2>React Query </h2>
+      <p> subscriber : 👀 {data.data.subscribers_count}</p>
+      <p> stars : ✨ {data.data.watchers}</p>
+      <p> forks : 🍴 {data.data.forks}</p>
     </>
   );
 }
