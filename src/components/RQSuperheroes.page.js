@@ -7,7 +7,7 @@ const getEmojis = () => {
 };
 
 function RQSuperheroesPage() {
-  const { isLoading, data, error, isError, isFetching } = useQuery({
+  const { isLoading, data, error, isError, isFetching, refetch } = useQuery({
     queryKey: ["super-heroes"],
     queryFn: getEmojis,
     //cache fallback back to 5 min.
@@ -17,9 +17,10 @@ function RQSuperheroesPage() {
     // refetchOnMount: true,
     // refetcOnWindowFocus: true,
     // anytime tab looses & gains focus, a bckg re-fetch will happen.
-    refetchInterval: 2000,
+    // refetchInterval: 2000,
     //automatic refetch after 2 sec, it looses focus when you chane tab, so we use,
-    refetchIntervalInBackground:true,
+    // refetchIntervalInBackground:true,
+    enabled: false, // disable fetching on loading
   });
 
   console.log({ isLoading, isFetching });
@@ -30,6 +31,7 @@ function RQSuperheroesPage() {
 
   return (
     <>
+      <button onClick={refetch}>Fetch the data on click</button>
       <h2>React Query</h2>
       <p> subscriber : 👀 {data.subscribers_count}</p>
       <p> stars : ✨ {data.stargazers_count}</p>
