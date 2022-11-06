@@ -14,9 +14,12 @@ function RQSuperheroesPage() {
     // staleTime: 30000,
     // to reduce no of network requests during stale time
     // default stale time is 0 seconds
-    refetchOnMount: true,
-    refetcOnWindowFocus: true,
+    // refetchOnMount: true,
+    // refetcOnWindowFocus: true,
     // anytime tab looses & gains focus, a bckg re-fetch will happen.
+    refetchInterval: 2000,
+    //automatic refetch after 2 sec, it looses focus when you chane tab, so we use,
+    refetchIntervalInBackground:true,
   });
 
   console.log({ isLoading, isFetching });
